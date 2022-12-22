@@ -15,7 +15,12 @@ sari = 209 , 209 , 46
 
 #Boyut ve arkaplan
 ekran = pg.display.set_mode( (en , boy ) )
+###
 arkaplan = bg = pg.image.load("background.jpg")
+###
+stick = st = pg.image.load("stick.png")
+taban =tb =pg.image.load("taban.png")
+pg.display.set_caption("Tork ve Denge Simülasyonu")
 
 while True:
     for event in pg.event.get():
@@ -24,6 +29,13 @@ while True:
             sys.exit();
     #ekran.fill(beyaz)
     ekran.blit(pg.transform.scale (bg, (1200,800)), (0,0))
+    ekran.blit(st, (120,540))
+    ekran.blit(tb,(480,570) )
+
+
+
+
+
 
 ### Tüm Oyun Mantığı Buranın Altına Yazılacak
 
