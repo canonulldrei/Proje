@@ -30,6 +30,7 @@ while True:
         if event.type == pg.QUIT :
             pg.quit()
             sys.exit();
+
 #Ekranda cikacak ögeler
     ekran.blit(pg.transform.scale (bg, (1200,800)), (0,0))
     ekran.blit( st, (124,540) )
@@ -42,21 +43,25 @@ while True:
 ### Tüm Oyun Mantığı Buranın Altına Yazılacak
 
 #Tork hesaplama
+def torque():     #Burada temel hesaplamamiz icin tork = kuvvet*kuvvet kolu  bagintisi girilmeli
+    
+
+#Tahterevalliyi hareket ettirme ve üzerinde belli uzakliklar tanimlayabilme
+
+
+
+#Agirliklari mouse ile sürükleme
+
+
+#Tahterevalliyi üzerine binen agirliklara göre hareket ettirme
+
+
+#Agirliklari tahterevalli üzerinde yerlestirme ve isleme alma
 
 
 
 
-
-
-
-#Buraya da Ekrandaki Çizimler Girilecek
-
-
-
-
-
-
-
+####Buraya da Ekrandaki Çizimler Girilecek
 
 
     pg.display.flip()
