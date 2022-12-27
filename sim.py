@@ -1,5 +1,6 @@
 import pygame as pg 
 import sys
+import pyautogui #mouse hareketlei icin kütüphane
 
 #Pygame'i baslatmak
 pg.init()
@@ -49,16 +50,18 @@ while True:
     ekran.blit(pg.transform.scale (bg, (1200,800)), (0,0))
     ekran.blit( st, (124,540) )
     ekran.blit( tb, (480,570) )
+    ekran.blit(pg.transform.scale (kb_5,(38,51)), (900,80))
     ekran.blit(pg.transform.scale (kb_5,(38,51)), (950,80))
-    ekran.blit(pg.transform.scale (kb_5,(38,51)), (1000,80))
+    ekran.blit(pg.transform.scale (kb_10,(38,51)), (1000,80))
     ekran.blit(pg.transform.scale (kb_10,(38,51)), (1050,80))
     ekran.blit(pg.transform.scale (kb_20,(38,51)), (1100,80))
+    ekran.blit(pg.transform.scale (kb_20,(38,51)), (1150,80))
     pg.display.update()
 
 ### Tüm Oyun Mantığı Buranın Altına Yazılacak ###
 
 #Tork hesaplama
-#def torque():     #Burada temel hesaplamamiz icin tork = kuvvet*kuvvet kolu  bagintisi girilmeli
+#def torque():   #Burada temel hesaplamamiz icin tork = kuvvet*kuvvet kolu  bagintisi girilmeli
 
 
 
