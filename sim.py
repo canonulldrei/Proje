@@ -86,7 +86,7 @@ while True:
 
 ####Buraya da Ekrandaki Çizimler Girilecek
 
-
+abdo
 
 clock.tick(FPS)
 pg.display.flip()
