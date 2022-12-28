@@ -1,6 +1,6 @@
 import pygame as pg 
 import sys
-import pyautogui #mouse hareketlei icin kütüphane
+
 
 #Pygame'i baslatmak
 pg.init()
@@ -27,6 +27,10 @@ arkaplan = bg = pg.image.load("img/background.jpg")
 
 #Tahterevalli
 stick = st = pg.image.load("img/stick.png")
+stick_rect = st.get_rect()
+# çubuğun orta noktasını belirlemek için
+stick_rect.centerx = ekran.get_rect().centerx
+stick_rect.bottom = ekran.get_rect().bottom
 st.convert()
 taban =tb =pg.image.load("img/taban.png")
 tb.convert()
@@ -56,13 +60,15 @@ while True:
     ekran.blit(pg.transform.scale (kb_10,(38,51)), (1050,80))
     ekran.blit(pg.transform.scale (kb_20,(38,51)), (1100,80))
     ekran.blit(pg.transform.scale (kb_20,(38,51)), (1150,80))
+    ekran.blit(st, stick_rect)
+    
     pg.display.update()
 
 ### Tüm Oyun Mantığı Buranın Altına Yazılacak ###
 
 #Tork hesaplama
 #def torque():   #Burada temel hesaplamamiz icin tork = kuvvet*kuvvet kolu  bagintisi girilmeli
-
+ #   dff   
 
 
 #Tahterevalliyi orta noktasindan hareket ettirme ve üzerinde belli uzakliklar tanimlayabilme
