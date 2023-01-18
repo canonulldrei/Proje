@@ -12,9 +12,6 @@ agirlik = 0
 kütle = 0
 basladi = False
 
-#Ekran ölcüleri
-en , boy = 1200 , 800
-
 #FPS ayari
 FPS = 30
 
@@ -58,28 +55,26 @@ class Butonlar():
         ekran.blit(self.img, (self.rect.x, self.rect.y))
         return action
 
-
-
-
+# Butonlari atama
+start_btn = Butonlar(950, 150, start_img, 1)
+restart_btn = Butonlar(1050, 150, restart_img, 1)
 
 #Boyut ve arkaplan
+en , boy = 1200 , 700
 ekran = pg.display.set_mode( (en , boy) )
 pg.display.set_caption("Tork ve Denge Simülasyonu")
-bg = pg.image.load("img/background.png")
+pg.display.set_icon(pg.image.load("img/kettlebell_5.png"))
+arkaplan = pg.image.load("img/background.png")
+taban = pg.image.load("img/ground.png")
 
 #Tahterevalli
-st = pg.image.load("img/stick.png")
+tahterevalli = pg.image.load("img/stick.png").convert_alpha()
+tahterevalli_rect = tahterevalli.get_rect()
+tahterevalli_rect.x = 100
+tahterevalli_rect.y = 540
 
-#####################################################
-stick_rect = st.get_rect()
-#çubuğun orta noktasını belirlemek için
-stick_rect.centerx = ekran.get_rect().centerx
-stick_rect.bottom = ekran.get_rect().bottom
-####################################################
-st.convert()
 
-taban =tb =pg.image.load("img/ground.png")
-tb.convert()
+
 #Agirliklar
 kettlebell_5 = kb_5 =pg.image.load("img/kettlebell_5.png")
 kb_5.convert()
@@ -98,9 +93,8 @@ while True:
 
 
 #Ekranda cikacak ögeler
-    ekran.blit(pg.transform.scale (bg, (1200,800)), (0,0))
-    ekran.blit( st, (100,540) )
-    ekran.blit( tb, (520,565) )
+    ekran.blit(tahterevalli, tahterevalli_rect)
+    ekran.blit(taban, (520,565) )
     ekran.blit(pg.transform.scale (kb_5,(38,51)), (900,80))
     ekran.blit(pg.transform.scale (kb_5,(38,51)), (950,80))
     ekran.blit(pg.transform.scale (kb_10,(38,51)), (1000,80))
