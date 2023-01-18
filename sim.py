@@ -1,10 +1,10 @@
 import pygame as pg 
 import sys
-import pyautogui #mouse hareketlei icin kütüphane
 
 #Pygame'i baslatmak
 pg.init()
 clock = pg.time.Clock()
+
 
 #Ekran ölcüleri
 en , boy = 1200 , 800
@@ -21,14 +21,22 @@ k_mavi = 5 , 7 , 54
 sari = 209 , 209 , 46
 
 #Boyut ve arkaplan
-ekran = pg.display.set_mode( (en , boy ) )
+ekran = pg.display.set_mode( (en , boy) )
 pg.display.set_caption("Tork ve Denge Simülasyonu")
-arkaplan = bg = pg.image.load("img/background.jpg")
+bg = pg.image.load("img/background.png")
 
 #Tahterevalli
-stick = st = pg.image.load("img/stick.png")
+st = pg.image.load("img/stick.png")
+
+#####################################################
+stick_rect = st.get_rect()
+#çubuğun orta noktasını belirlemek için
+stick_rect.centerx = ekran.get_rect().centerx
+stick_rect.bottom = ekran.get_rect().bottom
+####################################################
 st.convert()
-taban =tb =pg.image.load("img/taban.png")
+
+taban =tb =pg.image.load("img/ground.png")
 tb.convert()
 #Agirliklar
 kettlebell_5 = kb_5 =pg.image.load("img/kettlebell_5.png")
@@ -46,47 +54,35 @@ while True:
             pg.quit()
             sys.exit();
 
+
 #Ekranda cikacak ögeler
     ekran.blit(pg.transform.scale (bg, (1200,800)), (0,0))
-    ekran.blit( st, (124,540) )
-    ekran.blit( tb, (480,570) )
+    ekran.blit( st, (100,540) )
+    ekran.blit( tb, (520,565) )
     ekran.blit(pg.transform.scale (kb_5,(38,51)), (900,80))
     ekran.blit(pg.transform.scale (kb_5,(38,51)), (950,80))
     ekran.blit(pg.transform.scale (kb_10,(38,51)), (1000,80))
     ekran.blit(pg.transform.scale (kb_10,(38,51)), (1050,80))
     ekran.blit(pg.transform.scale (kb_20,(38,51)), (1100,80))
     ekran.blit(pg.transform.scale (kb_20,(38,51)), (1150,80))
+
+    #En asagida olacak
     pg.display.update()
 
 ### Tüm Oyun Mantığı Buranın Altına Yazılacak ###
 
+
+
+
 #Tork hesaplama
-#def torque():   #Burada temel hesaplamamiz icin tork = kuvvet*kuvvet kolu  bagintisi girilmeli
-
-
-
 #Tahterevalliyi orta noktasindan hareket ettirme ve üzerinde belli uzakliklar tanimlayabilme
-
-
-
-
-
-######Agirliklari mouse ile sürükleme
-
-
-
+#Agirliklari mouse ile sürükleme
 #Tahterevalliyi üzerine binen agirliklara göre hareket ettirme
-
-
-
-#Agirliklari tahterevalli üzerinde yerlestirme ve isleme alma
+# #Agirliklari tahterevalli üzerinde yerlestirme ve isleme alma
 
 
 
 
-####Buraya da Ekrandaki Çizimler Girilecek
 
-
-
-clock.tick(FPS)
-pg.display.flip()
+    clock.tick(FPS)
+    pg.display.flip()
