@@ -1,6 +1,7 @@
 import pygame as pg 
 import sys
 
+
 #Pygame'i baslatmak
 pg.init()
 clock = pg.time.Clock()
