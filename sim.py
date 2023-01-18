@@ -144,6 +144,18 @@ class Butonlar():
  
 
 
+# ekran temizle
+    ekran.fill((255, 255, 255))
+# Arkaplan ekleme
+    ekran.bilt(arkaplan, (0,0))
+    ekran.bilt(taban,(520,560))
+# "Tahterevalli" resimleri çizi
+    copy = pg.transform.rotate(tahterevalli, angle)
+    ekran.bilt(copy,(600 - int(copy.get_en()/ 2))),
+                551 - int(copy.get_boy()/2)
+                
+
+
 
 
 
