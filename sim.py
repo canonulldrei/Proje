@@ -153,42 +153,45 @@ class Butonlar():
     copy = pg.transform.rotate(tahterevalli, angle)
     ekran.bilt(copy,(600 - int(copy.get_en()/ 2))),
                 551 - int(copy.get_boy()/2)
-                
 
+# Çarpışma algılama sürecini kolaylaştırmak için tüm ağırlıkları tek bir diziye eklemek
+    allrects = []
+    allrects.append(kg1_rect)            
+    allrects.append(kg2_rect)
+    allrects.append(kg3_rect)
+    allrects.append(kg4_rect)
+    allrects.append(kg5_rect)
+    allrects.append(kg6_rect)
+    
+    Ağırlıklar = [0,0,0,0,0,0]
 
+    for i in range(9):
+        marker = pg.surface((5, 24))
+        marker.fill((0, 0, 0))
+        marker_rect_sol = marker.get_rect()
+        marker_rect_Sag = marker.get_rect()
 
+# Çubuk boyunca işaretçi hareketlerinin hesaplanması
 
+        marker_rect_sol.centrex = tahterevalli_rect.centrex + (i - 9) * 50
+        marker_rect_sol.centrex = tahterevalli_rect.centrex + angle*9.4 - ((i + 1) * angle)
+        marker_rect_sag.centrex = tahterevalli_rect.centrex + (i + 1) * 50
+        marker_rect_sag.centrex = tahterevalli_rect.centrex - ((i + 1) * angle) +angle*0.7
+        markers.append((marker, marker_rect_sol))
+        markers.append((marker, marker_rect_sag))
+        markers_rect.append(marker.get_rect())
 
+# Her işaretleyicide çarpışma kontrolü
 
-   
+    for marker, marker_rect in markers:
+        index = marker_rect.collidelist(allrects)
 
+        thisrect = allrects[index]
+        if index >= 0:
+            thisrect.x = marker_rect.x - 17
+            thisrect.y = marker_rect.y - 50
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            thisrect.y += 1
 
 
 
