@@ -219,19 +219,42 @@ class Butonlar():
     if started :
         weight = weights[0] + weights[1] + weights[2] + weights[3] + weights[4] + weights[5]
 
+# Ağırlık
+    screen.blit(kg_1, kg1_rect)
+    screen.blit(kg_2, kg2_rect)
+    screen.blit(kg_3, kg3_rect)
+    screen.blit(kg_4, kg4_rect)
+    screen.blit(kg_5, kg5_rect)
+    screen.blit(kh_6, kg6_rect)
 
+# Yeniden başlat düğmesine basıldığında oyunun yeniden başlatılması
 
+    if start_btn.draw() == True :
+        started = True
+    if restart_btn.draw() == True :
+        kg1_rect.x = 800
+        kg1_rect.y = 80
 
+        kg2_rect.x = 850
+        kg2_rect.y = 80
 
+        kg3_rect.x = 900
+        kg3_rect.y = 80
 
+        kg4_rect.x = 950
+        kg4_rect.y = 80
 
+        kg5_rect.x = 1000
+        kg5_rect.y = 80
 
+        kg6_rect.x = 1050
+        kg6_rect.y = 80
 
+        started = False
+        weight = 0
+    
+    pg.display.update()
 
-
-
-
-
-
-clock.tick(FPS)
-pg.display.flip()
+# Ekranı güncelle
+    clock.tick(FPS)
+    pg.display.flip()
