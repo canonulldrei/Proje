@@ -28,4 +28,40 @@ secili_color = (255 , 0 , 0)
 # Basligin görseli
 baslik_img = pg.image.load("img/title.png")
 
-#Buradan sonra ana döngü gelecek
+
+# Ana döngüsü 
+while True:
+    # Olayları işle
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            pg.quit()
+            sys.exit()
+        if event.type == pg.MOUSEBUTTONDOWN
+            # Fare konumunu alma
+            mouse_x, mouse_y = pg.mouse.get_pos()
+            # Farenin menü seçeneklerinden herhangi birinin üzerinde olup olmadığını kontrol etmek
+            for i, item in enumerate(menu_items):
+                text = font.render(item, True, text_renk)
+                text_rect = text.get_rect()
+                text_rect.center = (1200 // 2, 700 // 2 + i * 50)
+                if text_rect.collidepoint(mouse_x, mouse_y):
+                    # Seçeneği seç
+                    if item == 'Simülasyonu Başlat':
+                        # oyun başlat
+                        # oyun penceresi boyutunu ayarlayın
+                        ekran = pg.display.set_mode((1200, 800))
+                        # Pencere hacmı ayarla
+                        pg.display.set_caption('My Game')
+                        # Arka plan resmini yükle
+                        background_image = pg.image.load('img/background.png')
+                        # Arka plan resmini ayarla
+                        ekran.blit(background_image, (0, 0))
+                        exec(open("stack ve işaret birleştirme.py").read())
+                        # Oyun döngüsü
+                        while True:
+                            # Olayları işle
+                            for event in pg.event.get():
+                                if event.type == pg.QUIT:
+                                    pg.quit()
+                                    sys.exit()
+                            # Ekranı güncelle
