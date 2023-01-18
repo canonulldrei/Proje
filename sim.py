@@ -60,7 +60,7 @@ while True:
     ekran.blit(pg.transform.scale (kb_10,(38,51)), (1050,80))
     ekran.blit(pg.transform.scale (kb_20,(38,51)), (1100,80))
     ekran.blit(pg.transform.scale (kb_20,(38,51)), (1150,80))
-    ekran.blit(st, stick_rect)
+
     
     pg.display.update()
 
@@ -78,8 +78,20 @@ while True:
 
 
 ######Agirliklari mouse ile sürükleme
-
-
+# mouse pozisyonu
+mouse_x, mouse_y =0, 0
+# obje sınıfı
+class Obje:
+    def __init__(self, x, y, image):
+        self.x = x
+        self.y = y
+        self.image = image
+#mouse ile cisim seçildiğinde obje pozisyonunu güncelleyecek
+def update_position(self, mouse_x, mouse_y):
+    self.x = mouse_x
+    self.y = mouse_y
+#obje oluşturma ve pozisyonu
+object = object(100,100,"kettlebell_5.png")
 
 #Tahterevalliyi üzerine binen agirliklara göre hareket ettirme
 
@@ -92,6 +104,8 @@ while True:
 
 ####Buraya da Ekrandaki Çizimler Girilecek
 
+while True:
+    mouse_x , mouse_y = pg.mouse.get_pos()
 
 
 clock.tick(FPS)
