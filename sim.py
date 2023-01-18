@@ -12,9 +12,6 @@ agirlik = 0
 kütle = 0
 basladi = False
 
-#Ekran ölcüleri
-en , boy = 1200 , 800
-
 #FPS ayari
 FPS = 30
 
@@ -106,35 +103,69 @@ class Butonlar():
     
                             
 
-
-
-
+# Butonlari atama
+start_btn = Butonlar(950, 150, start_img, 1)
+restart_btn = Butonlar(1050, 150, restart_img, 1)
 
 #Boyut ve arkaplan
+en , boy = 1200 , 700
 ekran = pg.display.set_mode( (en , boy) )
 pg.display.set_caption("Tork ve Denge Simülasyonu")
-bg = pg.image.load("img/background.png")
+pg.display.set_icon(pg.image.load("img/kettlebell_5.png"))
+arkaplan = pg.image.load("img/background.png")
+taban = pg.image.load("img/ground.png")
 
 #Tahterevalli
-st = pg.image.load("img/stick.png")
+tahterevalli = pg.image.load("img/stick.png").convert_alpha()
+tahterevalli_rect = tahterevalli.get_rect()
+tahterevalli_rect.x = 100
+tahterevalli_rect.y = 540
 
-#####################################################
-stick_rect = st.get_rect()
-#çubuğun orta noktasını belirlemek için
-stick_rect.centerx = ekran.get_rect().centerx
-stick_rect.bottom = ekran.get_rect().bottom
-####################################################
-st.convert()
 
-taban =tb =pg.image.load("img/ground.png")
-tb.convert()
-#Agirliklar
-kettlebell_5 = kb_5 =pg.image.load("img/kettlebell_5.png")
-kb_5.convert()
-kettlebell_10 = kb_10 =pg.image.load("img/kettlebell_10.png")
-kb_10.convert()
-kettlebell_20 = kb_20 =pg.image.load("img/kettlebell_20.png")
-kb_20.convert()
+
+ #Agirliklar
+  # Birinci 5 Kg
+kg1 = pg.image.load("img/kettlebell_5.png")
+kg1_rect = kg1.get_rect()
+kg1_rect.x = 800
+kg1_rect.y = 80
+is_clicked_kg1 = False
+
+  # Ikinci 5 Kg
+kg2 = pg.image.load("img/kettlebell_5.png")
+kg2_rect = kg2.get_rect()
+kg2_rect.x = 850
+kg2_rect.y = 80
+is_clicked_kg2 = False
+
+  # Birinci 10 Kg
+kg3 = pg.image.load("img/kettlebell_10.png")
+kg3_rect = kg3.get_rect()
+kg3_rect.y = 900
+kg3_rect.y = 80
+is_clicked_kg3 = False
+
+  # Ikinci 10 Kg
+kg4 = pg.image.load("img/kettelebell_10.png")
+kg4_rect = kg4.get_rect()
+kg4_rect.x = 950
+kg4_rect.y = 80
+is_clicked_kg4 = False
+
+  # Birinci 20 Kg
+kg5 = pg.image.load("img/kettlebell_20.png")
+kg5_rect = kg5.get_rect()
+kg5_rect.x = 1000
+kg5_rect.y = 80
+is_clicked_kg5 = False
+
+  # Ikinci 20 Kg
+kg6 = pg.image.load("img/kettlebell_20.png")
+kg6_rect = kg6.get_rect()
+kg6_rect.x = 1050
+kg6_rect.y = 80
+is_clicked_kg6 = False
+
 
 #Oyun Döngüsü
 while True:
@@ -146,15 +177,14 @@ while True:
 
 
 #Ekranda cikacak ögeler
-    ekran.blit(pg.transform.scale (bg, (1200,800)), (0,0))
-    ekran.blit( st, (100,540) )
-    ekran.blit( tb, (520,565) )
-    ekran.blit(pg.transform.scale (kb_5,(38,51)), (900,80))
-    ekran.blit(pg.transform.scale (kb_5,(38,51)), (950,80))
-    ekran.blit(pg.transform.scale (kb_10,(38,51)), (1000,80))
-    ekran.blit(pg.transform.scale (kb_10,(38,51)), (1050,80))
-    ekran.blit(pg.transform.scale (kb_20,(38,51)), (1100,80))
-    ekran.blit(pg.transform.scale (kb_20,(38,51)), (1150,80))
+    ekran.blit(tahterevalli, tahterevalli_rect)
+    ekran.blit(taban, (520,565) )
+    # ekran.blit(pg.transform.scale (kb_5,(38,51)), (900,80))
+    # ekran.blit(pg.transform.scale (kb_5,(38,51)), (950,80))
+    # ekran.blit(pg.transform.scale (kb_10,(38,51)), (1000,80))
+    # ekran.blit(pg.transform.scale (kb_10,(38,51)), (1050,80))
+    # ekran.blit(pg.transform.scale (kb_20,(38,51)), (1100,80))
+    # ekran.blit(pg.transform.scale (kb_20,(38,51)), (1150,80))
 
     #En asagida olacak
     pg.display.update()
