@@ -1,11 +1,16 @@
 import pygame as pg 
 import sys
-
+import math
 
 #Pygame'i baslatmak
 pg.init()
 clock = pg.time.Clock()
 
+#Degiskenler 
+aci =0
+agirlik = 0
+kütle = 0
+basladi = False
 
 #Ekran ölcüleri
 en , boy = 1200 , 800
@@ -20,6 +25,42 @@ gri = 125 , 125 , 125
 yesil = 61 , 252 , 3
 k_mavi = 5 , 7 , 54
 sari = 209 , 209 , 46
+bej = 191, 149, 113
+a_mavi = 00 , 100 , 100  #degistirilecek
+
+#Baslama ve restart butonu
+start_img = pg.image.load("img/start.png") 
+restart_img = pg.image.load("img/restart.png") 
+
+#Butonlari class ile tanimlama 
+class Butonlar():
+    def __init__(self, x, y, img, oran):
+        en  = img.get_width()
+        boy = img.get_height()
+        self.img = pg.transform.scale(img, (int(en*oran), int(boy*oran)))
+        self.img = img
+        self.rect = self.img.get_rect()
+        self.rect.topleft = (x, y)
+        self.clicked = False
+
+    def draw(self):
+        action = False
+        pozisyon =pg.mouse.get_pos()
+
+        if self.rect.collidepoint(pozisyon):
+            if pg.mouse.get_pressed()[0] == 1 and self.clicked == False:
+                self.clicked = True
+                action = True
+        if pg.mouse.get_pressed()[0] == 1:
+            self.clicked = False 
+
+# Butonlari ekrana cizdirme
+        ekran.blit(self.img, (self.rect.x, self.rect.y))
+        return action
+
+
+
+
 
 #Boyut ve arkaplan
 ekran = pg.display.set_mode( (en , boy) )
