@@ -28,8 +28,7 @@ secili_color = (255 , 0 , 0)
 # Basligin görseli
 baslik_img = pg.image.load("img/title.png")
 
-
-# Ana döngüsü 
+# Buradan sonra ana döngü gelecek
 while True:
     # Olayları işle
     for event in pg.event.get():
