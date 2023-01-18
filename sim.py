@@ -163,7 +163,7 @@ class Butonlar():
     allrects.append(kg5_rect)
     allrects.append(kg6_rect)
     
-    Ağırlıklar = [0,0,0,0,0,0]
+    weights = [0,0,0,0,0,0]
 
     for i in range(9):
         marker = pg.surface((5, 24))
@@ -192,6 +192,44 @@ class Butonlar():
             thisrect.y = marker_rect.y - 50
 
             thisrect.y += 1
+
+# Bu formülü kullanarak denge işleminin hesaplanması : "tork= uzaklık(orta noktaya göre)*kuvvet (ağırlıklarla)"
+            
+            if index == 0 or index == 1:
+                mass = 5
+            elif index == 2 or index == 3:
+                mass = 10
+            else:
+                mass = 20
+
+            weights[index] += (581 - thisrect.x) * mass
+
+            marker.fill((255, 0, 0))
+
+        else:
+            marker.fill((0, 0, 0))
+# Çubuğu döndürmek
+        if angle > (weight/700):
+            angle -= 0.005
+        elif angle < (weight/700):
+            angle += 0.005
+
+        screen.blit(marker, marker_rect)
+    
+    if started :
+        weight = weights[0] + weights[1] + weights[2] + weights[3] + weights[4] + weights[5]
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
