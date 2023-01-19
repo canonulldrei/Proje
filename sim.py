@@ -52,14 +52,14 @@ class Butonlar():
         return action
 
 # Butona özellik atama
-start_btn =Butonlar(850, 150, start_img, 1)
-restart_btn =Butonlar(1000, 150, restart_img, 1)
+start_btn =Butonlar(600, 80, start_img, 1)
+restart_btn =Butonlar(700, 80, restart_img, 1)
 
 #Ekran olusturma 
 boyut = (1200, 700)
 ekran = pg.display.set_mode(boyut)
 arkaplan = pg.image.load("img/background.png")
-pg.display.set_caption("Tork ve Denge Simülasyonu")
+pg.display.set_caption("Tork ve Denge Simulasyonu")
 pg.display.set_icon(pg.image.load("img/kettlebell_10.png"))
 
 #Tahterevalli tabani
