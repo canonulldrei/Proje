@@ -64,3 +64,29 @@ while True:
                                     pg.quit()
                                     sys.exit()
                             # Ekranı güncelle
+                            pg.display.update()
+                    if item == 'Quit':
+                        pg.quit()
+                        sys.exit()
+
+    # Menüyü oluştur
+    ekran.fill(bg_color)
+    for i, item in enumerate(menu_items):
+        # Farenin menü seçeneğinin üzerinde olup olmadığını kontrol et
+        mouse_x, mouse_y = pg.mouse.get_pos()
+        text = font.render(item, True, txt_color)
+        text_rect = text.get_rect()
+        text_rect.center = (1200 // 2, 700 // 2 + i * 50)
+        if text_rect.collidepoint(mouse_x, mouse_y):
+            # seçeneğin rengini değiştir
+            color = secili_color
+        else:
+            color = txt_color
+        text = font.render(item, True, color)
+        ekran.blit(text, text_rect)
+
+    # Ekranı ve başlığı güncelle
+    ekran.blit(baslik_img, (390, 70))
+    pg.display.update()
+
+    
