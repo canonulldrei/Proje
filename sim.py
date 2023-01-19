@@ -4,16 +4,12 @@ import math
 
 #Pygame'i baslatmak
 pg.init()
-clock = pg.time.Clock()
 
 #Degiskenler 
-aci =0
-agirlik = 0
-kütle = 0
-basladi = False
-
-#FPS ayari
-FPS = 30
+angle =0
+weight = 0
+mass = 0
+started = False
 
 #Renkler
 siyah =  0 , 0 , 0
@@ -53,22 +49,83 @@ class Butonlar():
 
 # Butonlari ekrana cizdirme
         ekran.blit(self.img, (self.rect.x, self.rect.y))
-        return action,
+        return action
+
+# Butona özellik atama
+start_btn =Butonlar(850, 150, start_img, 1)
+restart_btn =Butonlar(1000, 150, restart_img, 1)
+
+#Ekran olusturma 
+boyut = (1200, 700)
+ekran = pg.display.set_mode(boyut)
+arkaplan = pg.image.load("img/background.png")
+pg.display.set_caption("Tork ve Denge Simülasyonu")
+pg.display.set_icon(pg.image.load("img/kettlebell_10.png"))
+
+#Tahterevalli tabani
+taban = pg.image.load("img/ground.png")
+
+#Tahterevalli
+tahterevalli = pg.image.load("img/stick.png")
+tahterevalli_rect = tahterevalli.get_rect()
+tahterevalli_rect.x = 100
+tahterevalli_rect.y = 540
+
+# Agirliklar 
+ # Birinci 5 Kg
+kg1 = pg.image.load("img/kettlebell_5.png") 
+kg1_rect =kg1.get_rect() 
+kg1_rect.x = 800
+kg1_rect.y = 80
+is_clicked_kg1 =False
+
+ # Ikinci 5 Kg
+kg2 = pg.image.load("img/kettlebell_5.png") 
+kg2_rect =kg2.get_rect() 
+kg2_rect.x = 850
+kg2_rect.y = 80
+is_clicked_kg2 =False
+
+ # Birinci 10 Kg
+kg3 = pg.image.load("img/kettlebell_10.png") 
+kg3_rect =kg1.get_rect() 
+kg3_rect.x = 900
+kg3_rect.y = 80
+is_clicked_kg3 =False
+
+ # Ikinci 10 Kg
+kg4 = pg.image.load("img/kettlebell_10.png") 
+kg4_rect =kg4.get_rect() 
+kg4_rect.x = 950
+kg4_rect.y = 80
+is_clicked_kg4 =False
+
+ # Birinci 20 Kg
+kg5 = pg.image.load("img/kettlebell_20.png") 
+kg5_rect =kg5.get_rect() 
+kg5_rect.x = 1000
+kg5_rect.y = 80
+is_clicked_kg5 =False
+
+ # Ikinci 20 Kg
+kg6 = pg.image.load("img/kettlebell_20.png") 
+kg6_rect =kg6.get_rect() 
+kg6_rect.x = 1050
+kg6_rect.y = 80
+is_clicked_kg6 =False
 
 
+collide = False
+running = True
+while running:
 
-
-    collide = False
-    running = True
-    while running:
-
-        markers = []
-        markers_rect = []
+    markers = []
+    markers_rect = []
 
 # Tahterevalli üzerinde işaretler oluşturun
     for event in pg.event.get():
         if event.type == pg.QUIT:
-            run = False
+            running = False
             pg.quit()
             sys.exit()
         elif event.type == pg.MOUSEBUTTONDOWN:
@@ -99,60 +156,53 @@ class Butonlar():
             is_clicked_kg4 = False
             is_clicked_kg5 = False
             is_clicked_kg6 = False 
-    
-    # Basıldığında "kg1" hareket ettir
 
+# Basıldığında "kg1" hareket ettir
     if is_clicked_kg1:
         mouse_pos = pg.mouse.get_pos()
-        kg1_rect.x = mouse_pos[0] - kg1_rect.en/2
-        kg1_rect.y = mouse_pos[1] - kg1_rect.boy/2
+        kg1_rect.x = mouse_pos[0] - kg1_rect.width/2
+        kg1_rect.y = mouse_pos[1] - kg1_rect.height/2
 
-    # Basıldığında "kg2" hareket ettir
+# Basıldığında "kg2" hareket ettir
+    if is_clicked_kg2:
+        mouse_pos = pg.mouse.get_pos()
+        kg2_rect.x = mouse_pos[0] - kg2_rect.width/2
+        kg2_rect.y = mouse_pos[1] - kg2_rect.height/2
 
-     if is_clicked_kg2:
-            mouse_pos = pg.mouse.get_pos()
-        kg2_rect.x = mouse_pos[0] - kg2_rect.en/2
-        kg2_rect.y = mouse_pos[1] - kg2_rect.boy/2
+# Basıldığında "kg3" hareket ettir
 
-    # Basıldığında "kg3" hareket ettir
+    if is_clicked_kg3:
+        mouse_pos = pg.mouse.get_pos()
+        kg3_rect.x = mouse_pos[0] - kg3_rect.width/2
+        kg3_rect.y = mouse_pos[1] - kg3_rect.height/2
 
-     if is_clicked_kg3:
-            mouse_pos = pg.mouse.get_pos()
-        kg3_rect.x = mouse_pos[0] - kg3_rect.en/2
-        kg3_rect.y = mouse_pos[1] - kg3_rect.boy/2
-                            
-    # Basıldığında "kg4" hareket ettir
+# Basıldığında "kg4" hareket ettir
+    if is_clicked_kg4:
+        mouse_pos = pg.mouse.get_pos()
+        kg4_rect.x = mouse_pos[0] - kg4_rect.width/2
+        kg4_rect.y = mouse_pos[1] - kg4_rect.height/2
 
-     if is_clicked_kg4:
-            mouse_pos = pg.mouse.get_pos()
-        kg4_rect.x = mouse_pos[0] - kg4_rect.en/2
-        kg4_rect.y = mouse_pos[1] - kg4_rect.boy/2
+# Basıldığında "kg5" hareket ettir
+    if is_clicked_kg5:
+        mouse_pos = pg.mouse.get_pos()
+        kg5_rect.x = mouse_pos[0] - kg5_rect.width/2
+        kg5_rect.y = mouse_pos[1] - kg5_rect.height/2
 
-    # Basıldığında "kg5" hareket ettir
-
-     if is_clicked_kg5:
-            mouse_pos = pg.mouse.get_pos()
-        kg5_rect.x = mouse_pos[0] - kg5_rect.en/2
-        kg5_rect.y = mouse_pos[1] - kg5_rect.boy/2
-
-    # Basıldığında "kg6" hareket ettir
-
-     if is_clicked_kg6:
-            mouse_pos = pg.mouse.get_pos()
-        kg6_rect.x = mouse_pos[0] - kg6_rect.en/2
-        kg6_rect.y = mouse_pos[1] - kg6_rect.boy/2
- 
-
+# Basıldığında "kg6" hareket ettir
+    if is_clicked_kg6:
+        mouse_pos = pg.mouse.get_pos()
+        kg6_rect.x = mouse_pos[0] - kg6_rect.width/2
+        kg6_rect.y = mouse_pos[1] - kg6_rect.height/2
 
 # ekran temizle
     ekran.fill((255, 255, 255))
 # Arkaplan ekleme
-    ekran.bilt(arkaplan, (0,0))
-    ekran.bilt(taban,(520,560))
-# "Tahterevalli" resimleri çizi
+    ekran.blit(arkaplan, (0,0))
+    ekran.blit(taban,(520,560))
+# "Tahterevalli" resimleri çiz
     copy = pg.transform.rotate(tahterevalli, angle)
-    ekran.bilt(copy,(600 - int(copy.get_en()/ 2))),
-                551 - int(copy.get_boy()/2)
+    ekran.blit(copy, (600 - int(copy.get_width() / 2), 
+                551 - int(copy.get_height()/2)))
 
 # Çarpışma algılama sürecini kolaylaştırmak için tüm ağırlıkları tek bir diziye eklemek
     allrects = []
@@ -166,17 +216,17 @@ class Butonlar():
     weights = [0,0,0,0,0,0]
 
     for i in range(9):
-        marker = pg.surface((5, 24))
+        marker = pg.Surface((5, 24))
         marker.fill((0, 0, 0))
         marker_rect_sol = marker.get_rect()
-        marker_rect_Sag = marker.get_rect()
+        marker_rect_sag = marker.get_rect()
 
 # Çubuk boyunca işaretçi hareketlerinin hesaplanması
 
-        marker_rect_sol.centrex = tahterevalli_rect.centrex + (i - 9) * 50
-        marker_rect_sol.centrex = tahterevalli_rect.centrex + angle*9.4 - ((i + 1) * angle)
-        marker_rect_sag.centrex = tahterevalli_rect.centrex + (i + 1) * 50
-        marker_rect_sag.centrex = tahterevalli_rect.centrex - ((i + 1) * angle) +angle*0.7
+        marker_rect_sol.centerx = tahterevalli_rect.centerx + (i - 9) * 50
+        marker_rect_sol.centery = tahterevalli_rect.centery + angle*9.4 - ((i + 1) * angle)
+        marker_rect_sag.centerx = tahterevalli_rect.centerx + (i + 1) * 50
+        marker_rect_sag.centery = tahterevalli_rect.centery - ((i + 1) * angle) +angle*0.7
         markers.append((marker, marker_rect_sol))
         markers.append((marker, marker_rect_sag))
         markers_rect.append(marker.get_rect())
@@ -214,18 +264,18 @@ class Butonlar():
         elif angle < (weight/700):
             angle += 0.005
 
-        screen.blit(marker, marker_rect)
+        ekran.blit(marker, marker_rect)
     
     if started :
         weight = weights[0] + weights[1] + weights[2] + weights[3] + weights[4] + weights[5]
 
 # Ağırlık
-    screen.blit(kg_1, kg1_rect)
-    screen.blit(kg_2, kg2_rect)
-    screen.blit(kg_3, kg3_rect)
-    screen.blit(kg_4, kg4_rect)
-    screen.blit(kg_5, kg5_rect)
-    screen.blit(kh_6, kg6_rect)
+    ekran.blit(kg1, kg1_rect)
+    ekran.blit(kg2, kg2_rect)
+    ekran.blit(kg3, kg3_rect)
+    ekran.blit(kg4, kg4_rect)
+    ekran.blit(kg5, kg5_rect)
+    ekran.blit(kg6, kg6_rect)
 
 # Yeniden başlat düğmesine basıldığında oyunun yeniden başlatılması
 
@@ -256,5 +306,5 @@ class Butonlar():
     pg.display.update()
 
 # Ekranı güncelle
-    clock.tick(FPS)
+
     pg.display.flip()
